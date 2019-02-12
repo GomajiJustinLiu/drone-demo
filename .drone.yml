@@ -15,9 +15,13 @@ pipeline:
     #pull: true
     repo: gomajijustinliu/drone-demo
     #auto_tag: true
+    environment:
+      - DOCKER_LAUNCH_DEBUG=true
+    debug: true
     tags: 
       - latest
       - "1.0"
+    registry: https://hub.docker.com/
     dockerfile: Dockerfile
     secrets: [ docker_username, docker_password ] 
     when:
