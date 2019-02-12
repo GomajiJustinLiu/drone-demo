@@ -1,0 +1,21 @@
+{
+  "name": "drone_demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "Justin",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4",
+    "ip": "^1.1.5",
+    "supertest": "^3.4.2"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0",
+    "should": "^13.2.3"
+  }
+}

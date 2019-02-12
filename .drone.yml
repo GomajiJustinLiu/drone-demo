@@ -1,0 +1,74 @@
+pipeline:
+  install:
+    image: mhart/alpine-node:10.15
+    commands:
+      - node -v
+      - npm -v
+      - npm install
+      - npm install -g mocha
+      - mocha test/api.js
+    when:
+      branch: docker
+
+  build_image:
+    image: plugins/docker
+    pull: true
+    repo: gomajijustinliu/drone-demo
+    #auto_tag: true
+    tags: 
+      - latest
+      - "1.0"
+    dockerfile: Dockerfile
+    secrets: [ docker_username, docker_password ] 
+    when:
+      branch: docker
+
+  scp:
+    image: appleboy/drone-scp
+    port: 22
+    secrets:
+      - source: host
+        target: scp_host
+      - source: user_name
+        target: scp_username
+      - source: key_path
+        target: scp_key_path
+    volumes:
+      - /home/ec2-user/.ssh:/ssh
+    rm: true
+    target: /home/ec2-user/drone-demo/
+    source: 
+      - docker-compose.yml
+    when:
+      branch: docker
+
+  restart_docker:
+    image: appleboy/drone-ssh
+    secrets:
+      - source: host
+        target: ssh_host
+      - source: user_name
+        target: ssh_username
+      - source: key_path
+        target: ssh_key_path
+    volumes:
+      - /home/ec2-user/.ssh:/ssh
+    script:
+      - sleep 30
+      - cd /home/ec2-user/drone-demo/
+      - echo "run docker"
+      - docker-compose stop
+      - docker-compose pull
+      - docker-compose up -d --force-recreate --build
+      - exit 0
+    when:
+      branch: docker
+
+  notify:
+    image: plugins/slack
+    channel: gomaji_shell
+    secrets: [ slack_webhook ]
+    username: Drone CI
+    when:
+      status: [ success, failure ]
+      branch: docker
