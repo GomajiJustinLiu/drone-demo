@@ -12,7 +12,7 @@ pipeline:
 
   build_image:
     image: plugins/docker
-    pull: true
+    #pull: true
     repo: gomajijustinliu/drone-demo
     #auto_tag: true
     tags: 
