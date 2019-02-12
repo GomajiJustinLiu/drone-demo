@@ -11,7 +11,7 @@ pipeline:
       branch: master
 
   build_image:
-    image: plugins/docker
+    image: plugins/docker:17
     #pull: true
     repo: gomajijustinliu/drone-demo
     #auto_tag: true
@@ -21,7 +21,7 @@ pipeline:
     tags: 
       - latest
       - "1.0"
-    registry: https://hub.docker.com/
+    #registry: https://hub.docker.com/
     dockerfile: Dockerfile
     secrets: [ docker_username, docker_password ] 
     when:
