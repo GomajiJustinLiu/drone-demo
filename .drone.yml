@@ -37,7 +37,7 @@ pipeline:
       - source: key_path
         target: scp_key_path
     volumes:
-      - /root/.ssh:/ssh
+      - /Users/Justin/.ssh:/ssh
     rm: true
     target: /home/ec2-user/drone-demo/
     source: 
@@ -55,7 +55,7 @@ pipeline:
       - source: key_path
         target: ssh_key_path
     volumes:
-      - /root/.ssh:/ssh
+      - /Users/Justin/.ssh:/ssh
     script:
       - sleep 30
       - cd /home/ec2-user/drone-demo/
