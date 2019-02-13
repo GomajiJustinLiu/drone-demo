@@ -21,11 +21,9 @@ pipeline:
     tags: 
       - latest
       - "1.0"
-    username: gomajijustinliu
-    password: 09350935a
     #registry: https://hub.docker.com/
     dockerfile: Dockerfile
-    #secrets: [ docker_username, docker_password ]
+    secrets: [ docker_username, docker_password ]
     when:
       branch: master
 
