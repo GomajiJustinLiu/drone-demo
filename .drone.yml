@@ -12,16 +12,14 @@ pipeline:
 
   build_image:
     image: plugins/docker
-    #pull: true
+    privileged: true
     repo: gomajijustinliu/drone-demo
-    #auto_tag: true
     environment:
       - DOCKER_LAUNCH_DEBUG=true
     debug: true
     tags: 
       - latest
-      - "1.0"
-    #registry: https://hub.docker.com/
+      - "3.0"
     dockerfile: Dockerfile
     secrets: [ docker_username, docker_password ]
     when:
@@ -38,7 +36,7 @@ pipeline:
       - source: key_path
         target: scp_key_path
     volumes:
-      - /home/ec2-user/.ssh:/ssh
+      - /root/.ssh:/ssh
     rm: true
     target: /home/ec2-user/drone-demo/
     source: 
@@ -56,7 +54,7 @@ pipeline:
       - source: key_path
         target: ssh_key_path
     volumes:
-      - /home/ec2-user/.ssh:/ssh
+      - /root/.ssh:/ssh
     script:
       - sleep 30
       - cd /home/ec2-user/drone-demo/
