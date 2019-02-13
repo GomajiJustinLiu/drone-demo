@@ -23,7 +23,9 @@ pipeline:
       - "1.0"
     #registry: https://hub.docker.com/
     dockerfile: Dockerfile
-    secrets: [ docker_username, docker_password ] 
+    secrets: [ docker_username, docker_password ]
+    commands:
+      - echo $DOCKER_USERNAME 
     when:
       branch: master
 
