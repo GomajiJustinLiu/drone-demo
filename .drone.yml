@@ -22,7 +22,7 @@ pipeline:
     tags:
       - 4.0
     dockerfile: Dockerfile
-    secrets: [ ECR_ACCESS_KEY, ECR_SECRET_KEY ]
+    secrets: [ ecr_access_key, ecr_secret_key ]
     when:
       branch: master
 
