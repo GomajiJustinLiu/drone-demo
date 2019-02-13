@@ -21,7 +21,7 @@ pipeline:
     debug: true
     tags:
       - latest
-      - 5.0
+      - 6.0
     dockerfile: Dockerfile
     secrets: [ ecr_access_key, ecr_secret_key ]
     when:
