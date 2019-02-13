@@ -13,14 +13,14 @@ pipeline:
   build_image:
     image: plugins/docker
     #pull: true
-    repo: liu71101/drone-demo
+    repo: gomajijustinliu/drone-demo
     #auto_tag: true
     environment:
       - DOCKER_LAUNCH_DEBUG=true
     debug: true
     tags: 
       - latest
-      - "5.0"
+      - "1.0"
     #registry: https://hub.docker.com/
     dockerfile: Dockerfile
     secrets: [ docker_username, docker_password ] 
