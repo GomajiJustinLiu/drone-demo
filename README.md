@@ -96,7 +96,7 @@ install:
 以跟主機相同的node環境的docker進行安裝，並使用<a href="https://mochajs.org">mocha</a> 做測試
 
 #### 第二步：編譯docker image
-使用<a href="https://github.com/drone-plugins/drone-docker">plugin/docker</a>
+常用<a href="https://github.com/drone-plugins/drone-docker">plugin/docker</a>
 <p>簡單說明如下：</p>
 
 *  repo：要上傳docker image的位置
@@ -105,6 +105,20 @@ install:
 *  password：登入docker image repo的密碼
     *  對應secret：docker_password
 *  dockerfile：要編譯image使用的Dockerfile路徑，e.g. docker-files/Dockerfile
+*  tags: image的tag名稱
+
+<br><p>本範例使用<a href="https://github.com/drone-plugins/drone-docker/tree/master/cmd">plugins/ecr</a></p>
+<p>簡單說明如下：</p>
+
+*  repo：要上傳docker image的位置
+*  registry: docker registry的位置
+*  region: docker registry所在的aws region
+*  access_key：存取aws ecr registry的access key
+    *  對應secret：ecr_access_key
+*  secret_key：存取aws ecr registry的secret key
+    *  對應secret：ecr_secret_key
+*  dockerfile：要編譯image使用的Dockerfile路徑，e.g. docker-files/Dockerfile
+*  tags: image的tag名稱 
 
 
 #### 第三步：SCP檔案到遠端
