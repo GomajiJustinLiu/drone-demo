@@ -9,7 +9,6 @@ pipeline:
       - mocha test/api.js
     when:
       branch: master
-      event: tag
 
   build_image:
     image: plugins/ecr
@@ -28,7 +27,6 @@ pipeline:
     secrets: [ ecr_access_key, ecr_secret_key ]
     when:
       branch: master
-      event: tag
 
   scp:
     image: appleboy/drone-scp
@@ -48,7 +46,6 @@ pipeline:
       - docker-compose.yml
     when:
       branch: master
-      event: tag
 
   restart_docker:
     image: appleboy/drone-ssh
@@ -62,7 +59,7 @@ pipeline:
     volumes:
       - /Users/mobilegomaji/.ssh:/ssh
     script:
-      - sleep 30
+      - sleep 10
       - cd /home/ec2-user/drone-demo/
       - echo "run docker"
       - docker-compose stop
@@ -71,7 +68,6 @@ pipeline:
       - exit 0
     when:
       branch: master
-      event: tag
 
   notify:
     image: plugins/slack
@@ -81,4 +77,3 @@ pipeline:
     when:
       status: [ success, failure ]
       branch: master
-      event: tag
