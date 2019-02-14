@@ -48,6 +48,7 @@ pipeline:
       - docker-compose.yml
     when:
       branch: master
+      event: tag
 
   restart_docker:
     image: appleboy/drone-ssh
