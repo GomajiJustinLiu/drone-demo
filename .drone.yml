@@ -9,6 +9,7 @@ pipeline:
       - mocha test/api.js
     when:
       branch: master
+      event: tag
 
   build_image:
     image: plugins/ecr
@@ -22,10 +23,12 @@ pipeline:
     tags:
       - latest
       - ${DRONE_COMMIT}
+      - ${DRONE_TAG}
     dockerfile: Dockerfile
     secrets: [ ecr_access_key, ecr_secret_key ]
     when:
       branch: master
+      event: tag
 
   scp:
     image: appleboy/drone-scp
@@ -67,6 +70,7 @@ pipeline:
       - exit 0
     when:
       branch: master
+      event: tag
 
   notify:
     image: plugins/slack
@@ -76,3 +80,4 @@ pipeline:
     when:
       status: [ success, failure ]
       branch: master
+      event: tag
