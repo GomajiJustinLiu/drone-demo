@@ -21,8 +21,8 @@ pipeline:
     debug: false
     tags:
       - latest
-      - ${DRONE_COMMIT}
-      - ${DRONE_TAG}
+      #- ${DRONE_COMMIT}
+      #- ${DRONE_TAG}
     dockerfile: Dockerfile
     secrets: [ ecr_access_key, ecr_secret_key ]
     when:
