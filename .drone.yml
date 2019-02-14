@@ -17,11 +17,11 @@ pipeline:
     registry: 147369302622.dkr.ecr.ap-northeast-1.amazonaws.com
     region: ap-northeast-1
     environment:
-      - DOCKER_LAUNCH_DEBUG=true
-    debug: true
+      - DOCKER_LAUNCH_DEBUG=false
+    debug: false
     tags:
       - latest
-      - 6.0
+      - ${DRONE_COMMIT}
     dockerfile: Dockerfile
     secrets: [ ecr_access_key, ecr_secret_key ]
     when:
