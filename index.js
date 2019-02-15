@@ -4,7 +4,7 @@ var app = express();
 
 app.get('/', function (req, res) {
   var myip = ip.address()
-  res.status(200).send('Hello World! v6 ' + myip);
+  res.status(200).send('Hello World! v7 ' + myip);
 });
 
 var server = app.listen(8080, function () {
